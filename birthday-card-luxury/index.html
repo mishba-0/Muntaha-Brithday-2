@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday Card</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0" aria-hidden="true"><defs>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a0"/><stop offset=".5" stop-color="#e0a921"/><stop offset="1" stop-color="#a87610"/></linearGradient>
+<symbol id="crown" viewBox="0 0 120 84"><path d="M10 68 L5 20 L36 44 L60 8 L84 44 L115 20 L110 68Z" fill="url(#gold)" stroke="#8a5d0a" stroke-width="2" stroke-linejoin="round"/><rect x="10" y="68" width="100" height="9" rx="3" fill="url(#gold)" stroke="#8a5d0a" stroke-width="2"/><circle cx="5" cy="20" r="5" fill="#fff"/><circle cx="60" cy="8" r="6" fill="#7db4ff"/><circle cx="115" cy="20" r="5" fill="#fff"/><circle cx="60" cy="54" r="5" fill="#fff" stroke="#8a5d0a"/><circle cx="34" cy="60" r="3.5" fill="#7db4ff"/><circle cx="86" cy="60" r="3.5" fill="#7db4ff"/></symbol>
+</defs></svg>
+
+<div class="sparkles" aria-hidden="true"></div>
+<div id="ambient" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="lights" id="lights" aria-hidden="true"></div>
+  <nav class="tools" aria-label="Card controls">
+    <button class="chip" id="bSound" onclick="toggleSound()" aria-pressed="false">🔇 Sound off</button>
+    <button class="chip" onclick="openNameDialog()">✏️ Change name</button>
+    <button class="chip" onclick="shareCard()">🔗 Share</button>
+    <button class="chip" onclick="toggleFullscreen()">⛶ Full screen</button>
+    <button class="chip" onclick="resetCard()">↺ Reset</button>
+  </nav>
+</header>
+
+<main>
+  <section class="card" id="card" aria-label="Birthday card">
+    <article class="inside">
+      <svg class="crown sm" viewBox="0 0 120 84" aria-hidden="true"><use href="#crown"/></svg>
+      <h2>Happy Birthday</h2>
+      <div class="name nm">Aisha</div>
+      <div class="cakewrap" aria-hidden="true">
+        <div class="cake" id="cake">
+          <i class="candle" style="left:62px"><b class="flame"></b></i>
+          <i class="candle" style="left:96px;height:36px"><b class="flame"></b></i>
+          <i class="candle" style="left:130px"><b class="flame"></b></i>
+          <div class="tier t3"></div><div class="tier t2"></div><div class="tier t1"></div><div class="plate"></div>
+        </div>
+      </div>
+      <p class="wish">May your day bloom with joy, laughter and every wish you’ve been holding close. The world is brighter with you in it.</p>
+      <p class="from">With love, <span class="fr">Your Friend</span></p>
+      <p class="surprise" id="surprise" aria-live="polite"></p>
+      <div class="row">
+        <button class="btn gold" id="bBlow" onclick="blowCandles()">🕯️ Blow candles</button>
+        <button class="btn" onclick="showSurprise()">💌 Surprise</button>
+        <button class="btn" onclick="showGift()">🎁 Gift</button>
+        <button class="btn" onclick="createBalloons()">🎈 Balloons</button>
+        <button class="btn" onclick="createConfetti()">🎉 Confetti</button>
+        <button class="btn" onclick="closeCard()">Close card</button>
+      </div>
+    </article>
+    <div class="cover" id="cover">
+      <svg class="crown" viewBox="0 0 120 84" aria-hidden="true"><use href="#crown"/></svg>
+      <p class="kicker">Today we celebrate you</p>
+      <h1>Happy Birthday</h1>
+      <div class="name nm">Aisha</div>
+      <div class="orn" aria-hidden="true"><span></span>✦<span></span></div>
+      <button class="btn gold big" onclick="openCard()">Open your card</button>
+    </div>
+  </section>
+</main>
+
+<footer>Made with love for a very special day</footer>
+
+<dialog id="giftDlg" aria-label="Birthday gift"><div class="dlg">
+  <div class="giftbox" id="giftbox"><div class="gbody"></div><div class="gitem" id="gitem">💎</div><div class="glid"></div></div>
+  <p class="gmsg" id="gmsg">A little something just for you.</p>
+  <div class="row"><button class="btn gold" id="bOpenGift" onclick="openGift()">Open gift</button><button class="btn" onclick="giftDlg.close()">Close</button></div>
+</div></dialog>
+
+<dialog id="nameDlg" aria-label="Change name"><div class="dlg">
+  <h3>Make it personal</h3>
+  <label>Birthday girl’s name<input id="inName" maxlength="24" autocomplete="off"></label>
+  <label>From<input id="inFrom" maxlength="24" autocomplete="off"></label>
+  <div class="row"><button class="btn gold" onclick="changeName()">Save</button><button class="btn" onclick="nameDlg.close()">Cancel</button></div>
+</div></dialog>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
